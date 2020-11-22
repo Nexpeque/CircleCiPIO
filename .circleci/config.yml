@@ -16,10 +16,10 @@ workflows:
       - hold:
           type: approval
           requires:
-            - build_docker_image
+            - push-image-ACR
       - slack-notification:
           requires:
-            - build_docker_image
+            - push-image-ACR
 
 
 jobs:
