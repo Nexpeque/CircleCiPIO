@@ -10,7 +10,7 @@ workflows:
                 - 14.0.0
                 - 13.11.0
                 - 12.16.0
-      - build_docker_image:
+      - push-image-ACR:
           requires:
             - node/test
       - hold:
@@ -20,28 +20,9 @@ workflows:
       - slack-notification:
           requires:
             - build_docker_image
-      - push-image-ACR:
-          requires:
-            - hold
+
 
 jobs:
-  build_docker_image:
-    docker:
-      - image: cimg/node:14.0.0
-    #parallelism: 2
-    steps:
-      - checkout
-      - setup_remote_docker:
-          #available on performance plan
-          docker_layer_caching: false
-      - run: 
-          name: Set up tag 
-          command: echo "export TAG=0.1.$CIRCLE_SHA1" >> $BASH_ENV
-      - run: 
-          name: Build Docker image
-          command: |
-            docker build -t your-image:$TAG .
-
   slack-notification:
     executor: node/default
     steps:
@@ -60,11 +41,14 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
+      - run: 
+          name: Set up tag 
+          command: echo "export TAG=0.1.$CIRCLE_SHA1" >> $BASH_ENV    
       - azure-acr/build-and-push-image:
           dockerfile: Dockerfile
-          login-server-name: REGISTRY_NAME.azurecr.io
-          registry-name: REGISTRY_NAME
-          repo: REGISTRY_NAME.azurecr.io/REGISTRY_NAME
+          login-server-name: "$REGISTRY_NAME.azurecr.io"
+          registry-name: "$REGISTRY_NAME"
+          repo: "$REGISTRY_NAME.azurecr.io/$REGISTRY_NAME"
           tag: TAG
 
 
