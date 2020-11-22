@@ -58,12 +58,14 @@ jobs:
     docker:
       - image: cimg/node:14.0.0
     steps:
+      - azure-cli/install
+      - azure-cli/login-with-user-or-service-principal:
+          azure-password: "$AZURE_PASSWORD"
+          azure-username: "$AZURE_USERNAME"
       - run: 
-          name: Log in
-          command: |
-            curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-            az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"
-            az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
+          name: restart web app
+          command: az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
+            
        
           
 
@@ -72,3 +74,4 @@ orbs:
   node: circleci/node@4.0.0
   slack: circleci/slack@3.4.2
   azure-acr: circleci/azure-acr@0.2.0
+  azure-cli: circleci/azure-cli@1.1.0
