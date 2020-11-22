@@ -20,7 +20,7 @@ workflows:
       - slack-notification:
           requires:
             - build_docker_image
-      - push-image-acr:
+      - push-image-ACR:
           requires:
             - hold
 
