@@ -28,8 +28,7 @@ jobs:
   build_docker_image:
     docker:
       - image: cimg/node:14.0.0
-    
-    parallelism: 2
+    #parallelism: 2
     steps:
       - checkout
       - setup_remote_docker:
@@ -63,10 +62,10 @@ jobs:
           docker_layer_caching: false
       - azure-acr/build-and-push-image:
           dockerfile: Dockerfile
-          login-server-name: $REGISTRY_NAME.azurecr.io
-          registry-name: $REGISTRY_NAME
-          repo: $REGISTRY_NAME.azurecr.io
-          tag: $TAG
+          login-server-name: REGISTRY_NAME.azurecr.io
+          registry-name: REGISTRY_NAME
+          repo: REGISTRY_NAME.azurecr.io/REGISTRY_NAME
+          tag: TAG
 
 
 orbs:
