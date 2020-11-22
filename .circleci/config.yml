@@ -45,10 +45,22 @@ jobs:
       - slack/notify:
           color: "#42e2f4"
           mentions: "nexpeque"
-          message: A custom message to notify the channel about the latest build
+          message: Dev image built! :D
       - slack/status:
           fail_only: true
           mentions: "nexpeque"
+
+  Push image ACR:
+    steps:
+      - azure-acr/build-and-push-image:
+          dockerfile: Dockerfile
+          login-server-name: $REGISTRY_NAME.azurecr.io
+          registry-name: $REGISTRY_NAME
+          repo: $REGISTRY_NAME.azurecr.io
+          tag: $TAG
+
+
 orbs:
   node: circleci/node@4.0.0
   slack: circleci/slack@3.4.2
+  azure-acr: circleci/azure-acr@0.2.0
