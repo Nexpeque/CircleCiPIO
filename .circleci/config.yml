@@ -28,7 +28,8 @@ jobs:
   build_docker_image:
     docker:
       - image: cimg/node:14.0.0
-    #parallelism: 2
+    
+    parallelism: 2
     steps:
       - checkout
       - setup_remote_docker:
@@ -54,8 +55,12 @@ jobs:
           mentions: "nexpeque"
 
   push-image-ACR:
-    executor: node/default
+    docker:
+      - image: cimg/node:14.0.0
     steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
       - azure-acr/build-and-push-image:
           dockerfile: Dockerfile
           login-server-name: $REGISTRY_NAME.azurecr.io
