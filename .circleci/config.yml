@@ -54,9 +54,10 @@ jobs:
     docker:
       - image: azure-cli:latest
     steps:
-      - run: |
-        az acr login --name << parameters.registry-name >>
-        az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
+      - run: 
+        command: |
+          az acr login --name << parameters.registry-name >>
+          az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
 
 
 orbs:
