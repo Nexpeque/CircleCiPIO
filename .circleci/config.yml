@@ -20,6 +20,9 @@ workflows:
       - slack-notification:
           requires:
             - build_docker_image
+      - push-image-acr:
+          requires:
+            - hold
 
 jobs:
   build_docker_image:
@@ -50,7 +53,7 @@ jobs:
           fail_only: true
           mentions: "nexpeque"
 
-  Push image ACR:
+  push-image-ACR:
     executor: node/default
     steps:
       - azure-acr/build-and-push-image:
