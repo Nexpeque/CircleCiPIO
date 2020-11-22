@@ -56,7 +56,7 @@ jobs:
 
   restart-app-service:
     docker:
-      - image: alpine:3.12
+      - image: ubuntu:18.04
     steps:
       - run: 
           name: Log in
