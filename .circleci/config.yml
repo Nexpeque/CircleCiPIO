@@ -61,7 +61,7 @@ jobs:
       - run: 
           name: Log in
           command: |
-            curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+            curl -sL https://aka.ms/InstallAzureCLIDeb | sh
             az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"
             az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
        
