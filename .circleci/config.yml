@@ -49,7 +49,7 @@ jobs:
           login-server-name: "$REGISTRY_NAME.azurecr.io"
           registry-name: "$REGISTRY_NAME"
           repo: "$REGISTRY_NAME.azurecr.io/$REGISTRY_NAME"
-          tag: TAG
+          tag: "$TAG"
 
 
 orbs:
