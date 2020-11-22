@@ -58,6 +58,7 @@ jobs:
       - image: azure-cli:latest
     steps:
       - run: 
+        name: Log in
         command: |
           az acr login --name "$REGISTRY_NAME"
           az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
