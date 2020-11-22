@@ -13,6 +13,10 @@ workflows:
       - build_docker_image:
           requires:
             - node/test
+      - hold:
+          type: approval
+          requires:
+            - build_docker_image
 
 jobs:
   build_docker_image:
