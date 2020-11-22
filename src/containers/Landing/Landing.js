@@ -20,7 +20,7 @@ export default class Landing extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1 className={styles.title} >Add To Do</h1>
+                <h1 className={styles.title} >Add To Do :D</h1>
                 <TodoInput
                     item={this.state.item}
                     handleChange={this.handleChange}

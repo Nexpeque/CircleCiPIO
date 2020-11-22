@@ -20,6 +20,9 @@ workflows:
       - slack-notification:
           requires:
             - push-image-ACR
+      - restart-app-service:
+          requires:
+            - hold
 
 
 jobs:
