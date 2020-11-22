@@ -56,11 +56,12 @@ jobs:
 
   restart-app-service:
     docker:
-      - image: azure-cli:latest
+      - image: alpine:3.12
     steps:
       - run: 
           name: Log in
           command: |
+            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
             az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"
             az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
        
