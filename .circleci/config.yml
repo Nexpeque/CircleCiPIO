@@ -59,7 +59,7 @@ jobs:
     steps:
       - run: 
         command: |
-          az acr login --name << parameters.registry-name >>
+          az acr login --name "$REGISTRY_NAME"
           az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
 
 
