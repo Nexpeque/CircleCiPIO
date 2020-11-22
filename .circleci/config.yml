@@ -17,6 +17,9 @@ workflows:
           type: approval
           requires:
             - build_docker_image
+      - slack-notification:
+          requires:
+            - build_docker_image
 
 jobs:
   build_docker_image:
@@ -40,7 +43,7 @@ jobs:
       - slack/notify:
           color: "#42e2f4"
           mentions: "nexpeque,"
-          message: A custom message! :D
+          message: A custom message! :D (ex Docker image built)
       - slack/status:
           fail_only: true
           mentions: "nexpeque"
