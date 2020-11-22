@@ -45,9 +45,6 @@ jobs:
           event: pass
           mentions: "@nexpeque"
           template: success_tagged_deploy_1
-      - slack/status:
-          fail_only: true
-          mentions: "@nexpeque"
 
 orbs:
   node: circleci/node@4.0.0
