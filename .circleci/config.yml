@@ -60,8 +60,8 @@ jobs:
     steps:
       - azure-cli/install
       - azure-cli/login-with-user-or-service-principal:
-          azure-password: "$AZURE_PASSWORD"
-          azure-username: "$AZURE_USERNAME"
+          azure-password: AZURE_PASSWORD
+          azure-username: AZURE_USERNAME
       - run: 
           name: restart web app
           command: az webapp restart --name circleci-todoapp --resource-group circle-ci-pio
