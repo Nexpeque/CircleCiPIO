@@ -50,3 +50,4 @@ jobs:
 
 orbs:
   node: circleci/node@4.0.0
+  slack: circleci/slack@4.1.1
