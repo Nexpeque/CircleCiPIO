@@ -37,16 +37,17 @@ jobs:
           name: Build Docker image
           command: |
             docker build -t your-image:$TAG .
+
   slack-notification:
     executor: node/default
     steps:
       - slack/notify:
-          color: "#42e2f4"
-          mentions: "nexpeque,"
-          message: A custom message! :D (ex Docker image built)
+          event: pass
+          mentions: "@nexpeque"
+          template: success_tagged_deploy_1
       - slack/status:
           fail_only: true
-          mentions: "nexpeque"
+          mentions: "@nexpeque"
 
 orbs:
   node: circleci/node@4.0.0
