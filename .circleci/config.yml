@@ -45,7 +45,7 @@ jobs:
           name: Set up tag 
           command: echo "export TAG=0.1.$CIRCLE_SHA1" >> $BASH_ENV    
       - azure-acr/build-and-push-image:
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.prod
           login-server-name: "$REGISTRY_NAME.azurecr.io"
           registry-name: "$REGISTRY_NAME"
           repo: "$REGISTRY_NAME.azurecr.io/$REGISTRY_NAME"
